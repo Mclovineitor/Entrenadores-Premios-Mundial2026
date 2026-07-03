@@ -1,12 +1,22 @@
 Public Class frmEntrenadores
+    Inherits Form
     Private entrenadores As New List(Of String)
     
-    Private Sub frmEntrenadores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.StartPosition = FormStartPosition.CenterScreen
+    Public Sub New()
+        MyBase.New()
+        InitializeComponent()
+    End Sub
+    
+    Private Sub InitializeComponent()
         Me.Text = "Gestionar Entrenadores"
-        Me.BackColor = Color.FromArgb(240, 240, 240)
         Me.Size = New Size(800, 650)
-        
+        Me.StartPosition = FormStartPosition.CenterScreen
+        Me.BackColor = Color.FromArgb(240, 240, 240)
+        Me.FormBorderStyle = FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
+    End Sub
+    
+    Private Sub frmEntrenadores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CrearControles()
         CargarEntrenadores()
     End Sub
@@ -33,7 +43,7 @@ Public Class frmEntrenadores
         pnlDatos.Height = 180
         Me.Controls.Add(pnlDatos)
         
-        ' Etiqueta Nombre
+        ' Nombre
         Dim lblNombre As New Label()
         lblNombre.Text = "Nombre del Entrenador:"
         lblNombre.Top = 15
@@ -47,7 +57,7 @@ Public Class frmEntrenadores
         txtNombre.Width = 250
         pnlDatos.Controls.Add(txtNombre)
         
-        ' Etiqueta País
+        ' País
         Dim lblPais As New Label()
         lblPais.Text = "País:"
         lblPais.Top = 15
@@ -61,7 +71,7 @@ Public Class frmEntrenadores
         txtPais.Width = 200
         pnlDatos.Controls.Add(txtPais)
         
-        ' Etiqueta Equipo
+        ' Equipo
         Dim lblEquipo As New Label()
         lblEquipo.Text = "Equipo:"
         lblEquipo.Top = 15
@@ -75,7 +85,7 @@ Public Class frmEntrenadores
         txtEquipo.Width = 200
         pnlDatos.Controls.Add(txtEquipo)
         
-        ' Etiqueta Años de Experiencia
+        ' Años
         Dim lblExperiencia As New Label()
         lblExperiencia.Text = "Años de Experiencia:"
         lblExperiencia.Top = 70
@@ -115,7 +125,7 @@ Public Class frmEntrenadores
         AddHandler btnLimpiar.Click, AddressOf btnLimpiar_Click
         pnlDatos.Controls.Add(btnLimpiar)
         
-        ' ListBox para mostrar entrenadores
+        ' ListBox
         Dim lstEntrenadores As New ListBox()
         lstEntrenadores.Name = "lstEntrenadores"
         lstEntrenadores.Top = 270

@@ -1,10 +1,25 @@
 Public Class frmMenuPrincipal
-    Private Sub frmMenuPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.StartPosition = FormStartPosition.CenterScreen
+    Inherits Form
+    
+    Public Sub New()
+        MyBase.New()
+        InitializeComponent()
+    End Sub
+    
+    Private Sub InitializeComponent()
         Me.Text = "Menú Principal - Entrenadores y Premios 2026"
-        Me.BackColor = Color.FromArgb(240, 240, 240)
         Me.Size = New Size(700, 550)
-        
+        Me.StartPosition = FormStartPosition.CenterScreen
+        Me.BackColor = Color.FromArgb(240, 240, 240)
+        Me.FormBorderStyle = FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
+    End Sub
+    
+    Private Sub frmMenuPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CrearControles()
+    End Sub
+    
+    Private Sub CrearControles()
         ' Título
         Dim lblTitulo As New Label()
         lblTitulo.Text = "MENÚ PRINCIPAL"

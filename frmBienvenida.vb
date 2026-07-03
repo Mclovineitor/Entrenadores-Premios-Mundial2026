@@ -1,11 +1,25 @@
 Public Class frmBienvenida
-    Private Sub frmBienvenida_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.StartPosition = FormStartPosition.CenterScreen
+    Inherits Form
+    
+    Public Sub New()
+        MyBase.New()
+        InitializeComponent()
+    End Sub
+    
+    Private Sub InitializeComponent()
         Me.Text = "Bienvenida - Entrenadores y Premios 2026"
-        Me.BackColor = Color.FromArgb(10, 50, 100)
         Me.Size = New Size(700, 550)
-        Me.ControlBox = True
-        
+        Me.StartPosition = FormStartPosition.CenterScreen
+        Me.BackColor = Color.FromArgb(10, 50, 100)
+        Me.FormBorderStyle = FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
+    End Sub
+    
+    Private Sub frmBienvenida_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CrearControles()
+    End Sub
+    
+    Private Sub CrearControles()
         ' Título principal
         Dim lblTitulo As New Label()
         lblTitulo.Text = "MUNDIAL 2026"

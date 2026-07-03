@@ -1,12 +1,22 @@
 Public Class frmPremios
+    Inherits Form
     Private premios As New List(Of String)
     
-    Private Sub frmPremios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.StartPosition = FormStartPosition.CenterScreen
+    Public Sub New()
+        MyBase.New()
+        InitializeComponent()
+    End Sub
+    
+    Private Sub InitializeComponent()
         Me.Text = "Gestionar Premios"
-        Me.BackColor = Color.FromArgb(240, 240, 240)
         Me.Size = New Size(800, 650)
-        
+        Me.StartPosition = FormStartPosition.CenterScreen
+        Me.BackColor = Color.FromArgb(240, 240, 240)
+        Me.FormBorderStyle = FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
+    End Sub
+    
+    Private Sub frmPremios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CrearControles()
         CargarPremios()
     End Sub
@@ -33,7 +43,7 @@ Public Class frmPremios
         pnlDatos.Height = 180
         Me.Controls.Add(pnlDatos)
         
-        ' Etiqueta Tipo de Premio
+        ' Tipo de Premio
         Dim lblTipoPremio As New Label()
         lblTipoPremio.Text = "Tipo de Premio:"
         lblTipoPremio.Top = 15
@@ -48,7 +58,7 @@ Public Class frmPremios
         cmbTipo.Items.AddRange({"Campeón", "Subcampeón", "Tercer Lugar", "Mejor Portero", "Goleador"})
         pnlDatos.Controls.Add(cmbTipo)
         
-        ' Etiqueta Equipo Ganador
+        ' Equipo Ganador
         Dim lblEquipo As New Label()
         lblEquipo.Text = "Equipo Ganador:"
         lblEquipo.Top = 15
@@ -62,9 +72,9 @@ Public Class frmPremios
         txtEquipo.Width = 200
         pnlDatos.Controls.Add(txtEquipo)
         
-        ' Etiqueta Monto del Premio
+        ' Monto
         Dim lblMonto As New Label()
-        lblMonto.Text = "Monto (Millones USD):"
+        lblMonto.Text = "Monto (USD):"
         lblMonto.Top = 15
         lblMonto.Left = 480
         pnlDatos.Controls.Add(lblMonto)
@@ -75,10 +85,10 @@ Public Class frmPremios
         nudMonto.Left = 480
         nudMonto.Width = 150
         nudMonto.Minimum = 0
-        nudMonto.Maximum = 1000
+        nudMonto.Maximum = 1000000000
         pnlDatos.Controls.Add(nudMonto)
         
-        ' Etiqueta Descripción
+        ' Descripción
         Dim lblDescripcion As New Label()
         lblDescripcion.Text = "Descripción:"
         lblDescripcion.Top = 70
@@ -116,7 +126,7 @@ Public Class frmPremios
         AddHandler btnLimpiar.Click, AddressOf btnLimpiar_Click
         pnlDatos.Controls.Add(btnLimpiar)
         
-        ' ListBox para mostrar premios
+        ' ListBox
         Dim lstPremios As New ListBox()
         lstPremios.Name = "lstPremios"
         lstPremios.Top = 270
@@ -150,7 +160,7 @@ Public Class frmPremios
             Return
         End If
         
-        Dim premio = $"{cmbTipo.SelectedItem} - {txtEquipo.Text} - ${nudMonto.Value}M - {txtDescripcion.Text}"
+        Dim premio = $"{cmbTipo.SelectedItem} - {txtEquipo.Text} - ${nudMonto.Value} - {txtDescripcion.Text}"
         premios.Add(premio)
         
         MessageBox.Show("Premio agregado exitosamente", "Éxito")
